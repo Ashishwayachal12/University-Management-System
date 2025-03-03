@@ -11,7 +11,7 @@ public class Project extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(1540, 850);
-        setLocationRelativeTo(null); // Centers window
+        setLocationRelativeTo(null);
 
         // Set Window Icon
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("icons/index1.jpg"));

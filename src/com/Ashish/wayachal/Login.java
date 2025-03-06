@@ -86,7 +86,6 @@ public class Login extends JFrame implements ActionListener {
             if (authenticateUser(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
                 setVisible(false);
-
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -98,16 +97,16 @@ public class Login extends JFrame implements ActionListener {
     private boolean authenticateUser(String username, String password) {
         boolean isValid = false;
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university_db", "root", "password");
+            Conn c = new Conn(); // Using the separate Conn class
             String query = "SELECT * FROM users WHERE username=? AND password=?";
-            PreparedStatement pst = con.prepareStatement(query);
+            PreparedStatement pst = c.con.prepareStatement(query);
             pst.setString(1, username);
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             isValid = rs.next();
             rs.close();
             pst.close();
-            con.close();
+            c.con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Database Connection Error!", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
